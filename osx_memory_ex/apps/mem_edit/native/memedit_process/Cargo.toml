@@ -1,0 +1,17 @@
+[package]
+name = "memedit_process"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[lib]
+name = "memedit_process"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.25.0"
+sysinfo = "0.24.5"
+libc = "0.2.65"
+vmemory = "0.1.8"
+mach = "0.3.2"
