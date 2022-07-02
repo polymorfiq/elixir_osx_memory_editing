@@ -12,9 +12,12 @@ defmodule MemEdit.Process do
 
   @spec find_process(name :: String) :: {:ok, Process} | {:error, String}
   def find_process(qry) do
-    matches = get_processes()
-    |> Enum.filter(fn {_pid, name} -> String.downcase(name) |> String.contains?(String.downcase(qry)) end)
-    |> Enum.at(0)
+    matches =
+      get_processes()
+      |> Enum.filter(fn {_pid, name} ->
+        String.downcase(name) |> String.contains?(String.downcase(qry))
+      end)
+      |> Enum.at(0)
 
     case matches do
       {pid, name} -> __MODULE__.new(pid, name)

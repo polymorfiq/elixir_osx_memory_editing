@@ -16,7 +16,6 @@ defmodule HelloWorldTweak do
   @replacement_text 'Hi, world!\0\0\0'
 
   def start(_type, _args) do
-
     mem_size = Enum.count(@expected_text)
     new_mem_size = Enum.count(@replacement_text)
 
@@ -25,13 +24,18 @@ defmodule HelloWorldTweak do
     end
 
     IO.puts("Finding process....")
+
     proc =
       case Process.find_process(@process_name) do
-        {:ok, proc} -> proc
-        _ -> raise "Sanity check: Could not find process '#{@process_name}' - is the toy app running?"
+        {:ok, proc} ->
+          proc
+
+        _ ->
+          raise "Sanity check: Could not find process '#{@process_name}' - is the toy app running?"
       end
 
     IO.puts("Double-checking that process looks correct....")
+
     case proc |> Process.read_offset(@hello_text_offset, Enum.count(@expected_text)) do
       {true, @expected_text} ->
         true
@@ -44,6 +48,7 @@ defmodule HelloWorldTweak do
     end
 
     IO.puts("Writing to process memory....")
+
     case proc |> Process.write_offset(@hello_text_offset, @replacement_text) do
       {true, _} -> true
       {false, err} -> raise "Write failed! Error code #{err}"
