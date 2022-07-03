@@ -15,7 +15,7 @@ In order for any of these examples to work, you might need to disable SIP on you
 **How to disable SIP:**
 https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection
 
-### toy_apps/hello_world
+### Toy Programs: hello_world
 
 Runs together with `osx_memory_ex/apps/hello_world_tweak` 
 
