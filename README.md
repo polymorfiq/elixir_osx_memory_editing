@@ -21,4 +21,12 @@ Runs together with `osx_memory_ex/apps/hello_world_tweak`
 
 The toy app prints a static message, every 5 seconds.
 
-The Elixir application will essentially **overwrite** the string "Hello, world!" with "Hi, world!" in the running program by overwriting the TEXT section in the program's memory.
+The Elixir application will essentially **overwrite** the string "Hello, world!" with "Hi, world!" in the running program, which will be printed on every future iteration.
+
+### Toy Programs: function_caller
+
+Runs together with `osx_memory_ex/apps/reroute_function_caller` 
+
+The toy app loops every 5 seconds and calls `do_nothing()` on each iteration.
+
+The Elixir application will essentially **overwrite** a `bl` instruction in the assembly that powers the `main()` function, to jump to the code for `print_message()` instead of `do_nothing()`.
